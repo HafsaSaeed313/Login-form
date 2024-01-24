@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login Page</title>
+</head>
+<style>
+    body{
+        background-image: url(https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif)
+    }
+</style>
+
+<body>
+    <h1 id="heading"></h1>
+
+    <script>
+        let userName = localStorage.getItem("signup"); 
+
+        let headingElement = document.getElementById("heading");
+
+        headingElement.innerText = "Welcome " + userName;
+
+        localStorage.setItem("headingElement", userName);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sign-Up</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login</h1>
+         
+        <div class="input">
+            <label>User Name</br><br/>
+                <input id="userName" type="text" required>
+            </label></br>
+        </div>
+
+        <div class="input">
+            <label>Password </br><br/>
+                <input id="userPass" type="password" required>
+            </label>
+        </div>
+
+        <button class="btn" onclick="submit()">Submit</button>
+
+        <div class="link">
+            <a href="index.html" style="color: white;">Sign Up</a>
+        </div>
+    </div>
+
+    <script>
+        
+        function submit() {
+            let userName = document.getElementById("userName").value;
+            let Password = document.getElementById("userPass").value;
+
+            let signup = localStorage.getItem("SignUp");
+            let signUpPassword = localStorage.getItem("cPassword");
+
+            localStorage.setItem("signup", userName); 
+            if (userName === "" || Password === "") {
+                alert("Please enter both username and password.");
+            } else {
+                if (userName === signup && Password === signUpPassword) {
+                    window.location.href = "loginPage.html";
+                } else {
+                    alert("Incorrect username or password");
+                }
+            }
+        }
+    </script>
+   
+</body >
+</html >

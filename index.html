@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+
+        <div class="input">
+            <label>Name</br><br />
+                <input id="userName" type="text" required>
+            </label></br>
+        </div>
+
+        <div class="input">
+            <label>Email</br><br />
+                <input id="email" type="email" required>
+            </label></br>
+        </div>
+
+        <div class="input">
+            <label>Age </br><br />
+                <input id="Age" type="number" required>
+            </label>
+        </div>
+
+
+        <div class="input">
+            <label>Password </br><br />
+                <input id="userPass" type="password" required>
+            </label>
+        </div>
+
+        <div class="input">
+            <label>Confirm Password </br><br />
+                <input id="ConPass" type="password" required>
+            </label>
+        </div>
+
+        <button class="btn" onclick="submit()">Submit</button>
+
+        <div class="link">
+            <a href="sign-up.html" style="color: white;">Sign In</a>
+        </div>
+    </div>
+
+    <script>
+
+        function submit() {
+            let SignUp = document.getElementById("userName").value;
+            let mail = document.getElementById("email").value; 
+            let age = document.getElementById("Age").value;
+            let Password = document.getElementById("userPass").value;
+            let cPassword = document.getElementById("ConPass").value;
+
+            localStorage.setItem("SignUp", SignUp);
+            localStorage.setItem("mail", mail);
+            localStorage.setItem("age", age);
+            localStorage.setItem("Password", Password);
+            localStorage.setItem("cPassword", cPassword)
+
+
+
+            if (SignUp === "" || mail === "" || age === "" || Password === "" || cPassword === "") {
+                alert("Please enter all required information.");
+            }
+             else if (Password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+            }
+
+             else {
+                if (Password === cPassword) {
+                    window.location.href = "sign-up.html";
+                } else {
+                    alert("Password does not match");
+                }
+            }
+
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
