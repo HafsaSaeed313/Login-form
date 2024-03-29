@@ -1,30 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Page</title>
     <link rel="stylesheet" href="style.css">
-    <title>Login Page</title>
 </head>
-<style>
-    body{
-        background-image: url(https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif)
-    }
-</style>
-
 <body>
-    <h1 id="heading"></h1>
+    <header>
+        <nav>
+            <span id="user-icon">👤</span>
+            <span id="user-name"></span>
+        </nav>
+    </header>
+
+    <div class="main">
+        <div class="box">
+            <img src="assets/b1.png">
+            <button onclick="addToCart('Product 1')">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="assets/b2.png">
+            <button onclick="addToCart('Product 2')">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="assets/b3.png">
+            <button onclick="addToCart('Product 3')">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="assets/b4.jpg">
+            <button onclick="addToCart('Product 4')">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="assets/b5.png">
+            <button onclick="addToCart('Product 5')">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="assets/b6.jpg">
+            <button onclick="addToCart('Product 6')">Add to Cart</button>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="checkout()">Checkout</button>
+    </div>
 
     <script>
-        let userName = localStorage.getItem("signup"); 
+        let cartCount = 0;
 
-        let headingElement = document.getElementById("heading");
+        function updateUserNav() {
+            const userIcon = document.getElementById("user-icon");
+            const userName = localStorage.getItem("SignUp");
+            if (userName) {
+                document.getElementById("user-name").innerText = userName;
+            }
+        }
 
-        headingElement.innerText = "Welcome " + userName;
+        function addToCart(productName) {
+            cartCount++;
+            alert("Added " + productName + " to cart!");
+        }
 
-        localStorage.setItem("headingElement", userName);
+        function checkout() {
+            if (cartCount === 0) {
+                alert("Your cart is empty. Please add some products first.");
+            } else {
+                alert("Total products in your cart: " + cartCount);
+                window.location.href = "sign-up.html"; 
+            }
+        }
+
+        updateUserNav();
     </script>
 </body>
-
 </html>

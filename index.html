@@ -51,10 +51,9 @@
     </div>
 
     <script>
-
         function submit() {
             let SignUp = document.getElementById("userName").value;
-            let mail = document.getElementById("email").value; 
+            let mail = document.getElementById("email").value;
             let age = document.getElementById("Age").value;
             let Password = document.getElementById("userPass").value;
             let cPassword = document.getElementById("ConPass").value;
@@ -70,11 +69,11 @@
             if (SignUp === "" || mail === "" || age === "" || Password === "" || cPassword === "") {
                 alert("Please enter all required information.");
             }
-             else if (Password.length < 8) {
+            else if (Password.length < 8) {
                 alert("Password must be at least 8 characters long.");
             }
 
-             else {
+            else {
                 if (Password === cPassword) {
                     window.location.href = "sign-up.html";
                 } else {
@@ -85,6 +84,51 @@
 
 
         }
+    </script>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBKXOjO265Rl4JhfbMagQRrEf8QWCWOfhA",
+            authDomain: "hafsa-saeed.firebaseapp.com",
+            projectId: "hafsa-saeed",
+            storageBucket: "hafsa-saeed.appspot.com",
+            messagingSenderId: "333745551051",
+            appId: "1:333745551051:web:36c2326edf36274947cd4e",
+            measurementId: "G-YWQY7KW0WC",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+
+        let RegisterUser = evt => {
+            evt.preventDefault();
+
+            let mail = document.getElementById("email").value;
+            let Password = document.getElementById("userPass").value;
+
+            createUserWithEmailAndPassword(auth, mail, Password)
+                .then((credentials) => {
+                    console.log(credentials)
+                })
+                .catch((error) => {
+
+                    console.log(error.code);
+                    console.log(error.message);
+                });
+        };
+        document.querySelector('.btn').addEventListener('click', RegisterUser);
 
 
 
